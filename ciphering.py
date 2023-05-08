@@ -38,12 +38,32 @@ class Cipher:
 
 if __name__ == "__main__":
     cipher = Cipher()
-    print("Do you want to encrypt or decrypt? [E/D]")
-    choice = input()
+    choice = input("Do you want to encrypt or decrypt? [E/D]: ")
     if choice.lower() == "e":
-        cipher.encrypt_text()
+        if input("Do you have key[Y/N]? ").lower() == 'y':
+            key = input("Please enter your secret key: ")
+            # cipher.pass_key(key)
+        else:
+            key = cipher.get_key()
+            print(f"Your secret key\n{key.decode()} is copied to clipboard.")
+            pyperclip.copy(key.decode())
+        print("Please enter your text to be encrypted.")
+        message_s = input()
+        try:
+            encry = cipher.encrypt_text(key, message_s)
+            print(f"Encrypted text\n{encry.decode()}")
+        except ValueError as VE:
+            print(f"Seems you entered wrong key as {VE}")
+
     elif choice.lower() == "d":
-        cipher.decrypt_text()
+        try:
+            key = input("Please enter your secret key: ")
+            cipher.pass_key(key)
+            print("Please enter your cipher text to be decrypted: ")
+            message_cfr = input()
+            plen = cipher.decrypt_text(key, message_cfr)
+            print(f"Your decrypted cipher is\n{plen}")
+        except cryptography.fernet.InvalidToken:
+            print("Uh-ho! Something went wrong.")
     else:
         print("Invalid input")
-    cipher.encrypt_text()
