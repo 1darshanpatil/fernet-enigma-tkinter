@@ -35,7 +35,7 @@ class Cipher:
         # print(txt)
         return txt
 
-'''
+
 if __name__ == "__main__":
     cipher = Cipher()
     print("Do you want to encrypt or decrypt? [E/D]")
@@ -47,4 +47,3 @@ if __name__ == "__main__":
     else:
         print("Invalid input")
     cipher.encrypt_text()
-'''
