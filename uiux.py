@@ -54,7 +54,7 @@ class SecurityWindow:
                                   highlightthickness=1)
         self.pin_entry.pack(fill=tk.X, padx=10)
 
-        self.secret_key_label = tk.Label(self.label_frame, text="Enter your 64-character secret key:",
+        self.secret_key_label = tk.Label(self.label_frame, text="Enter your 32-character secret key:",
                                          font=("Arial", 16), bg="#f2f2f2")
         self.secret_key_label.pack(pady=10)
 
